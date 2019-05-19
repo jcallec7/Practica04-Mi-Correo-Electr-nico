@@ -1,7 +1,7 @@
 <?php
  session_start();
  if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
- header("Location: /SistemaDeGestion/public/vista/login.html");
+    header("Location: ../../../public/vista/login.html");
  }
 ?>
 
@@ -12,6 +12,11 @@
     <title>Gestión de usuarios</title> 
 </head> 
 <body> 
+
+    <nav>
+        <li><a href="index_admin.php">Inicio</a></li>
+        <li><a href="index.php">Usuarios</a></li>
+    </nav>
      
     <table style="width:100%"> 
         <tr> 
