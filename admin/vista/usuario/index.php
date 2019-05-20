@@ -14,7 +14,7 @@
 <body> 
 
     <nav>
-        <li><a href="index_admin.php">Inicio</a></li>
+        <li><a href="../admin/index_admin.php">Inicio</a></li>
         <li><a href="index.php">Usuarios</a></li>
     </nav>
      

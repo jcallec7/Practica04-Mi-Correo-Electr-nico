@@ -14,12 +14,28 @@
 <body> 
     <nav>
         <li><a href="index_admin.php">Inicio</a></li>
-        <li><a href="index.php">Usuarios</a></li>
+        <li><a href="../usuario/index.php">Usuarios</a></li>
     </nav>
 
     <section>
 
-        <header><h3>Mensajes Recibidos</h3></header>
+        <?php
+        include '../../../config/conexionBD.php';  
+        $codigo = $_SESSION['codigo'];
+        $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
+        $resultUsu = $conn->query($sqlUsu);
+        $rowUsu = mysqli_fetch_assoc($resultUsu);
+        $nombres = $rowUsu['usu_nombres'];
+        $apellidos =$rowUsu['usu_apellidos'];
+        echo "$nombres ";
+        echo $apellidos;
+        ?>
+
+    </section>
+
+    <section>
+
+        <header>Mensajes Recibidos</header>
      
         <table style="width:100%"> 
             <tr> 
@@ -44,7 +60,7 @@
                         echo "<td>" . $row['corr_remitente'] ."</td>"; 
                         echo "<td>" . $row['corr_destinatario'] ."</td>";       
                         echo "<td>" . $row['corr_asunto'] . "</td>";                                                        
-                        echo "<td><a href=leer_correo.php?codigo=".$row['corr_codigo'].">Eliminar</a></td>";
+                        echo "<td><a href=../../controladores/admin/eliminar_correo.php?codigo=".$row['corr_codigo'].">Eliminar</a></td>";
                         echo "</tr>"; 
                     }             
                 } else {                 
@@ -60,8 +76,9 @@
 
     </section>
     
-    <a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a>
-
+    <footer>
+        <a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a>
+    </footer>
  
 </body> 
 </html> 

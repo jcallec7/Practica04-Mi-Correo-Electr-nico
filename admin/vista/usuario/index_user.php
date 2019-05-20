@@ -1,8 +1,17 @@
 <?php
- session_start();
- if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
-    header("Location: ../../../public/vista/login.html");
- }
+    session_start();
+    include '../../../config/conexionBD.php';
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
+        header("Location: ../../../public/vista/login.html");
+    }
+
+    $codigo = $_SESSION['codigo'];
+    $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
+    $resultUsu = $conn->query($sqlUsu);
+    $rowUsu = mysqli_fetch_assoc($resultUsu);
+    $nombres = $rowUsu['usu_nombres'];
+    $apellidos =$rowUsu['usu_apellidos'];
+
 ?>
 
 <!DOCTYPE html> 
@@ -13,15 +22,25 @@
 </head> 
 <body> 
     <nav>
-        <li><a href="index_user.php">Inicio</a></li>
-        <li><a href="correo.php">Nuevo Mensaje</a></li>
-        <li><a href="index_msj_env.php">Mensajes Enviados</a></li>
-        <li><a href="Mi Cuenta">Mi Cuenta</a></li>
+        <?php
+        echo "<li><a href=index_user.php>Inicio</a></li>";
+        echo "<li><a href=correo_enviar.php?correo=".$rowUsu['usu_correo'].">Nuevo Mensaje</a></li>";
+        echo "<li><a href=index_msj_env.php>Mensajes Enviados</a></li>";
+        echo "<li><a href=Mi Cuenta>Mi Cuenta</a></li>";
+        echo "<li><a href=../../../config/cerrar_sesion.php>[Cerrar Sesion]</a></li>"
+        ?>
     </nav>
 
     <section>
+        <?php
+        echo "$nombres ";
+        echo $apellidos;
+        ?>
+    </section>
 
-        <header><h3>Mensajes Recibidos</h3></header>
+    <section>
+
+        <header>Mensajes Recibidos</header>
      
         <table style="width:100%"> 
             <tr> 
@@ -59,9 +78,6 @@
         </table>
 
     </section>
-    
-    <a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a>
 
- 
 </body> 
 </html> 
