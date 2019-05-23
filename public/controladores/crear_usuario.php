@@ -45,7 +45,7 @@
          
         //cerrar la base de datos 
         $conn->close();         
-        echo "<a href='../vista/crear_usuario.html'>Regresar</a>"; 
+        echo "<a href='../vista/login.html'>Regresar</a>"; 
                    
     ?> 
  

@@ -11,6 +11,7 @@
 <head>
  <meta charset="UTF-8">
  <title>Modificar datos de persona</title>
+ <link href="../../../css/style.css" rel="stylesheet" />
 </head>
 <body>
  <?php

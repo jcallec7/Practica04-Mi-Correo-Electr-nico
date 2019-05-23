@@ -1,7 +1,6 @@
 function validarCamposObligatorios(){
 
     var bandera = false
-    
 
     for(var i = 0; i < document.forms[0].length; i++){
         var elemento = document.forms[0].elements[i]
@@ -54,25 +53,7 @@ function validarCamposObligatorios(){
             }
         }
     }
-
-    for(var i = 0; i < rol.length; i++){
-
-        if(rol[i].checked && !bandera)
-        {
-            bandera = false
-            break
-        }else if(rol[i].checked && bandera)
-        {
-            bandera = true
-            document.getElementById("mensajeRol").innerHTML = ('') 
-            break
-            
-        }else{
-            bandera = true
-            document.getElementById("mensajeRol").innerHTML = ('rol obligatorio') 
-        }
-
-    }
+    
 
     if(bandera)
     {
