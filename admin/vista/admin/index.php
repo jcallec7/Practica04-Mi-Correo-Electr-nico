@@ -51,7 +51,7 @@
                     echo "<td>" . $row['usu_correo'] . "</td>";        
                     echo "<td>" . $row['usu_fecha_nacimiento'] . "</td>";                                               
                     echo "<td><a href=eliminar.php?codigo=".$row['usu_codigo'].">[Enlace Eliminar]</a></td>";
-                    echo "<td><a href=modificar.php?codigo=".$row['usu_codigo'].">[Enlace Modificar]</a></td>";
+                    echo "<td><a href=../usuario/modificar.php?codigo=".$row['usu_codigo'].">[Enlace Modificar]</a></td>";
                     echo "<td><a href=cambiar_contrasena.php?codigo=".$row['usu_codigo'].">[Enlace Cambiar]</a></td>";
                     echo "</tr>"; 
                 }             

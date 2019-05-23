@@ -9,7 +9,7 @@
  $resultUsu = $conn->query($sqlUsu);
  $rowUsu = mysqli_fetch_assoc($resultUsu);
 
- if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'admin'){
+ if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'user'){
     header("Location: ../../../public/vista/login.html");
  }
 
@@ -65,8 +65,8 @@
                     echo "<td>" . $row['usu_telefono'] . "</td>"; 
                     echo "<td>" . $row['usu_correo'] . "</td>";        
                     echo "<td>" . $row['usu_fecha_nacimiento'] . "</td>";                                               
-                    echo "<td><a href=../usuario/modificar.php?codigo=".$row['usu_codigo'].">[Enlace Modificar]</a></td>";
-                    echo "<td><a href=../usuario/cambiar_contrasena.php?codigo=".$row['usu_codigo'].">[Enlace Cambiar]</a></td>";
+                    echo "<td><a href=modificar.php?codigo=".$row['usu_codigo'].">[Enlace Modificar]</a></td>";
+                    echo "<td><a href=cambiar_contrasena.php?codigo=".$row['usu_codigo'].">[Enlace Cambiar]</a></td>";
                     echo "</tr>"; 
                 }             
             } else {                 
