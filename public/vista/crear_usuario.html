@@ -33,12 +33,12 @@
             <br>                 
     
             <label for="fecha">Fecha Nacimiento (*)</label> 
-            <input type="text" id="fechaNacimiento" name="fechaNacimiento" value="" placeholder="DDMMYYYY ..." onkeypress="this.value = validarNumeros(this.value)" onkeyup="validarFecha('fechaNacimiento')"/> 
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="" placeholder="DDMMYYYY ..." /> <!--onkeypress="this.value = validarNumeros(this.value)" onkeyup="validarFecha('fechaNacimiento')"-->
             <span id="mensajeFecha" class="error"></span>
             <br> 
     
             <label for="correo">Correo electrónico (*)</label> 
-            <input type="text" id="correo" name="correo" value="" placeholder="Ingrese su correo electrónico ..." onkeyup="return validarMail()"/> 
+            <input type="email" id="correo" name="correo" value="" placeholder="Ingrese su correo electrónico ..." /> <!--onkeyup="return validarMail()"-->
             <span id="mensajeCorreo" class="error"></span>
             <br> 
     
