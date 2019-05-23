@@ -23,29 +23,29 @@
 <html> 
 <head>     
     <meta charset="UTF-8"> 
+    <link href="../../../css/style.css" rel="stylesheet" /> 
     <title>Inicio</title> 
 </head> 
 <body> 
     <nav>
         <li><a href="index_admin.php">Inicio</a></li>
         <li><a href="index.php">Usuarios</a></li>
-        <li><a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a></li>
+        <li><a href="../../../config/cerrar_sesion.php">Cerrar Sesion</a></li>
     </nav>
 
-    <section>
+    <section class="foto">
 
-        <?php
-        echo "$nombres ";
-        echo $apellidos;
-        ?>
+        <img id="avatar" src="<?php echo $imagen?>" alt="usu_avatar"/>
+        <br>
+        <span><?php echo $nombres?> <?php echo $apellidos?></span>
 
     </section>
 
-    <section><img id="avatar" src="<?php echo $imagen?>" alt="usu_avatar"/></section>
+    
 
     <section>
 
-        <header>Mensajes electrónicos</header>
+    <header><h3>Correos electronicos</h3></header>
      
         <table style="width:100%"> 
             <tr> 

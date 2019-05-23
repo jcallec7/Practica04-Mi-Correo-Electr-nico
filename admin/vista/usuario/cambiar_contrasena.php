@@ -1,8 +1,18 @@
 <?php
  session_start();
- if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
- header("Location: ../../../public/vista/login.html");
+
+ include '../../../config/conexionBD.php';  
+
+ $codigo = $_SESSION['codigo'];
+ $rol = $_SESSION['rol'];
+ $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
+ $resultUsu = $conn->query($sqlUsu);
+ $rowUsu = mysqli_fetch_assoc($resultUsu);
+
+ if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'user'){
+    header("Location: ../../../public/vista/login.html");
  }
+
 ?>
 
 <!DOCTYPE html>

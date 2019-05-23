@@ -2,6 +2,12 @@
     session_start();            
     include '../../../config/conexionBD.php'; 
 
+    $rol = $_SESSION['rol'];
+
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'user'){
+        header("Location: ../../../public/vista/login.html");
+    }
+
     $codigo = $_SESSION['codigo'];
     $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
     $resultUsu = $conn->query($sqlUsu);

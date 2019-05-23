@@ -7,7 +7,9 @@
     $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
     $resultUsu = $conn->query($sqlUsu);
     $rowUsu = mysqli_fetch_assoc($resultUsu);
-    $correo = $rowUsu['usu_correo'];   
+    $correo = $rowUsu['usu_correo'];
+    $nombres = $rowUsu['usu_nombres'];
+    $apellidos = $rowUsu['usu_apellidos'];    
     $imagen = "../".$rowUsu['usu_avatar']; 
 
     if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol !='user'){
@@ -20,7 +22,7 @@
 <head>     
     <meta charset="UTF-8"> 
     <title>Bandeja de Salida</title> 
-    <link href="../../../css/img-style.css" rel="stylesheet" />
+    <link href="../../../css/style.css" rel="stylesheet" />
     <script type ="text/javascript" src="../../controladores/usuario/busquedaAjax.js"></script>
 </head> 
 <body> 
@@ -30,11 +32,17 @@
         echo "<li><a href=correo_enviar.php?correo=".$rowUsu['usu_correo'].">Nuevo Mensaje</a></li>";
         echo "<li><a href=index_msj_env.php>Mensajes Enviados</a></li>";
         echo "<li><a href=index.php>Mi Cuenta</a></li>";
-        echo "<li><a href=../../../config/cerrar_sesion.php>[Cerrar Sesion]</a></li>"
+        echo "<li><a href=../../../config/cerrar_sesion.php>Cerrar Sesion</a></li>"
         ?>
     </nav>
 
-    <section><img id="avatar" src="<?php echo $imagen?>" alt="usu_avatar"/></section>
+    <section class="foto">
+
+        <img id="avatar" src="<?php echo $imagen?>" alt="usu_avatar"/>
+        <br>
+        <span><?php echo $nombres?> <?php echo $apellidos?></span>
+
+    </section>
 
     <section>
 

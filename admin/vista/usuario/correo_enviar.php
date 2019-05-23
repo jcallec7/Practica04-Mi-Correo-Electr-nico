@@ -19,7 +19,8 @@
 <!DOCTYPE html>
     <head>
         <meta charset="UTF-8"> 
-        <title>Enviar Correo</title> 
+        <title>Enviar Correo</title>
+        <link href="../../../css/style.css" rel="stylesheet" /> 
     </head>  
     <body>
 
@@ -29,7 +30,7 @@
             echo "<li><a href=correo_enviar.php?correo=".$rowUsu['usu_correo'].">Nuevo Mensaje</a></li>";
             echo "<li><a href=index_msj_env.php>Mensajes Enviados</a></li>";
             echo "<li><a href=index.php>Mi Cuenta</a></li>";
-            echo "<li><a href=../../../config/cerrar_sesion.php>[Cerrar Sesion]</a></li>"
+            echo "<li><a href=../../../config/cerrar_sesion.php>Cerrar Sesion</a></li>"
             ?>
         </nav>
 

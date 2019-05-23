@@ -4,10 +4,16 @@
     include '../../../config/conexionBD.php'; 
 
     $codigo = $_SESSION['codigo'];
+    $rol = $_SESSION['rol'];
     $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
     $resultUsu = $conn->query($sqlUsu);
     $rowUsu = mysqli_fetch_assoc($resultUsu);
     $correo = $rowUsu['usu_correo']; 
+
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'user'){
+        header("Location: ../../../public/vista/login.html");
+    }
+    
 
     $sql = "SELECT * FROM correos WHERE corr_eliminado = 'N' AND corr_destinatario = '$correo' ORDER BY corr_fecha_creacion DESC"; 
     $result = $conn->query($sql); 

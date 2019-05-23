@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
+    header("Location: ../../../public/vista/login.html");
+ }
+?>
 <!DOCTYPE html>
 <html>
 <head>

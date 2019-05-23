@@ -1,5 +1,11 @@
 <?php
-    include '../../../config/conexionBD.php';  
+    include '../../../config/conexionBD.php'; 
+
+    $rol = $_SESSION['rol'];
+
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'user'){
+        header("Location: ../../../public/vista/login.html");
+    }
 
     $remitente = isset($_POST["remitente"]) ? trim($_POST["remitente"]) : null;
     echo $remitente;

@@ -1,6 +1,13 @@
 <?php
     include '../../../config/conexionBD.php';
 
+    $rol = $_SESSION['rol'];
+
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'admin'){
+        header("Location: ../../../public/vista/login.html");
+    }
+
+
     $codigo = $_POST['codigo'];
 
     

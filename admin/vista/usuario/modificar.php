@@ -1,5 +1,6 @@
 <?php
  session_start();
+ include '../../../config/conexionBD.php';
  if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
     header("Location: ../../../public/vista/login.html");
  }

@@ -1,8 +1,18 @@
 <?php
  session_start();
- if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
+
+ include '../../../config/conexionBD.php';  
+
+ $codigo = $_SESSION['codigo'];
+ $rol = $_SESSION['rol'];
+ $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
+ $resultUsu = $conn->query($sqlUsu);
+ $rowUsu = mysqli_fetch_assoc($resultUsu);
+
+ if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'admin'){
     header("Location: ../../../public/vista/login.html");
  }
+
 ?>
 
 <!DOCTYPE html> 
@@ -10,13 +20,14 @@
 <head>     
     <meta charset="UTF-8"> 
     <title>Gestión de usuarios</title> 
+    <link href="../../../css/style.css" rel="stylesheet" />
 </head> 
 <body> 
 
     <nav>
         <li><a href="../admin/index_admin.php">Inicio</a></li>
         <li><a href="index.php">Usuarios</a></li>
-        <li><a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a></li>
+        <li><a href="../../../config/cerrar_sesion.php">Cerrar Sesion</a></li>
     </nav>
      
     <table style="width:100%"> 
