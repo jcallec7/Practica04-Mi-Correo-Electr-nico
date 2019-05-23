@@ -5,8 +5,8 @@ Creacion de un pequeño correo en base a JavaScript, PHP, y HTML. A continuacion
 
 Diagramas, bases de datos y sentencias SQL.
 
-![1](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/1.png)
-![2](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/2.png)
+![1](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/1.png)
+![2](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/2.png)
 
 Sentencia SQL: 
 
@@ -47,14 +47,14 @@ CREATE TABLE `correo` (
 
 Desarrollo de la pagina:
 
-![3](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/3.png)
-![4](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/4.png)
-![5](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/5.png)
-![6](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/6.png)
-![7](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/7.png)
-![8](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/8.png)
-![9](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/9.png)
-![10](https://github.com/jcallec7/Practica02-Mi-Sitio-Web-CSS-/blob/master/captures/10.png)
+![3](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/3.png)
+![4](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/4.png)
+![5](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/5.png)
+![6](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/6.png)
+![7](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/7.png)
+![8](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/8.png)
+![9](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/9.png)
+![10](https://github.com/jcallec7/Practica04-Mi-Correo-Electronico/blob/master/captures/10.png)
 
 https://github.com/jcallec7/Practica04-Mi-Correo-Electronico.git
 User: jcallec7
