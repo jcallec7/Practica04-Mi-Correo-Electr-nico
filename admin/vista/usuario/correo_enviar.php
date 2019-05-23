@@ -1,12 +1,18 @@
 <?php
- session_start();
- include '../../../config/conexionBD.php'; 
- if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
-    header("Location: ../../../public/vista/login.html");
- }
+    
+    session_start();
+    include '../../../config/conexionBD.php'; 
 
- $correo = $_GET["correo"];
+    $codigo = $_SESSION['codigo'];
+    $rol = $_SESSION['rol'];
+    $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
+    $resultUsu = $conn->query($sqlUsu);
+    $rowUsu = mysqli_fetch_assoc($resultUsu);
+    $correo = $rowUsu['usu_correo'];   
 
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol !='user'){
+        header("Location: ../../../public/vista/login.html");
+    }
 ?>
 
 
@@ -18,11 +24,13 @@
     <body>
 
         <nav>
-            <li><a href="index_user.php">Inicio</a></li>
-            <li><a href="correo.php">Nuevo Mensaje</a></li>
-            <li><a href="index_msj_env.php">Mensajes Enviados</a></li>
-            <li><a href="Mi Cuenta">Mi Cuenta</a></li>
-            <li><a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a></li>
+            <?php
+            echo "<li><a href=index_user.php>Inicio</a></li>";
+            echo "<li><a href=correo_enviar.php?correo=".$rowUsu['usu_correo'].">Nuevo Mensaje</a></li>";
+            echo "<li><a href=index_msj_env.php>Mensajes Enviados</a></li>";
+            echo "<li><a href=index.php>Mi Cuenta</a></li>";
+            echo "<li><a href=../../../config/cerrar_sesion.php>[Cerrar Sesion]</a></li>"
+            ?>
         </nav>
 
         <section>
@@ -45,6 +53,12 @@
             </form>
             
         </section>
+
+        <footer>
+        Jose Esteban Calle Chuchuca &#8226; Universidad Politécnica Salesiana &#8226; 
+        <a href="mailto:jcallec7@est.ups.edu.ec">jcallec7@est.ups.edu.ec</a> &#8226; 
+        <a href="tel:+593979376626">(593) 979-376-626</a> &#8226; © Todos los Derechos Reservados 
+        </footer>
 
     </body>  
 </html>

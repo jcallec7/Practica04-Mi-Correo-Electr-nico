@@ -1,16 +1,23 @@
 <?php
+
     session_start();
     include '../../../config/conexionBD.php';
-    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
-        header("Location: ../../../public/vista/login.html");
-    }
 
     $codigo = $_SESSION['codigo'];
+    $rol = $_SESSION['rol'];
     $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
     $resultUsu = $conn->query($sqlUsu);
     $rowUsu = mysqli_fetch_assoc($resultUsu);
     $nombres = $rowUsu['usu_nombres'];
-    $apellidos =$rowUsu['usu_apellidos'];
+    $apellidos = $rowUsu['usu_apellidos']; 
+    $correo = $rowUsu['usu_correo']; 
+    $imagen = "../".$rowUsu['usu_avatar']; 
+    
+    if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol !='user'){
+        header("Location: ../../../public/vista/login.html");
+    }
+
+    
 
 ?>
 
@@ -19,6 +26,8 @@
 <head>     
     <meta charset="UTF-8"> 
     <title>Inicio</title> 
+    <link href="../../../css/img-style.css" rel="stylesheet" />
+    <script type ="text/javascript" src="../../controladores/usuario/busquedaAjax.js"></script>
 </head> 
 <body> 
     <nav>
@@ -26,10 +35,14 @@
         echo "<li><a href=index_user.php>Inicio</a></li>";
         echo "<li><a href=correo_enviar.php?correo=".$rowUsu['usu_correo'].">Nuevo Mensaje</a></li>";
         echo "<li><a href=index_msj_env.php>Mensajes Enviados</a></li>";
-        echo "<li><a href=Mi Cuenta>Mi Cuenta</a></li>";
-        echo "<li><a href=../../../config/cerrar_sesion.php>[Cerrar Sesion]</a></li>"
+        echo "<li><a href=index.php>Mi Cuenta</a></li>";
+        echo "<li><a href=../../../config/cerrar_sesion.php>[Cerrar Sesion]</a></li>";
         ?>
     </nav>
+
+    <section><img id="avatar" src="<?php echo $imagen?>" alt="usu_avatar"/></section>
+    
+    
 
     <section>
         <?php
@@ -41,8 +54,10 @@
     <section>
 
         <header>Mensajes Recibidos</header>
+
+        <input type = "text" id = "busqueda" placeholder = "Buscar..." onkeyup = "return buscarPorRemitente()"/>
      
-        <table style="width:100%"> 
+        <table style="width:100%" id="tabla"> 
             <tr> 
                 <th>Fecha</th> 
                 <th>Remitente</th>  
@@ -52,10 +67,9 @@
     
             <?php             
                 include '../../../config/conexionBD.php';  
-                $sql = "SELECT * FROM correos WHERE corr_eliminado = 'N' AND corr_tipo = 'R'"; 
+                $sql = "SELECT * FROM correos WHERE corr_eliminado = 'N' AND corr_destinatario = '$correo' ORDER BY corr_fecha_creacion DESC"; 
                 $result = $conn->query($sql); 
-                $sql = 'SELECT = FROM news WHERE status <> 0'; 
-
+                
                 if ($result->num_rows > 0) { 
                     
                     while($row = $result->fetch_assoc()) {                          
@@ -63,7 +77,7 @@
                         echo "<td>" . $row['corr_fecha_creacion'] . "</td>";        
                         echo "<td>" . $row['corr_remitente'] ."</td>";        
                         echo "<td>" . $row['corr_asunto'] . "</td>";                                                        
-                        echo "<td><a href=leer_correo.php?codigo=".$row['corr_codigo'].">Leer</a></td>";
+                        echo "<td><a href=leer_correo.php?codigoCorr=".$row['corr_codigo'].">Leer</a></td>";
                         echo "</tr>"; 
                     }             
                 } else {                 
@@ -78,6 +92,12 @@
         </table>
 
     </section>
+
+    <footer>
+        Jose Esteban Calle Chuchuca &#8226; Universidad Politécnica Salesiana &#8226; 
+        <a href="mailto:jcallec7@est.ups.edu.ec">jcallec7@est.ups.edu.ec</a> &#8226; 
+        <a href="tel:+593979376626">(593) 979-376-626</a> &#8226; © Todos los Derechos Reservados 
+    </footer>
 
 </body> 
 </html> 

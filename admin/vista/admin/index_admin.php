@@ -1,8 +1,22 @@
 <?php
  session_start();
- if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE){
+
+ include '../../../config/conexionBD.php';  
+
+ $codigo = $_SESSION['codigo'];
+ $rol = $_SESSION['rol'];
+ $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
+ $resultUsu = $conn->query($sqlUsu);
+ $rowUsu = mysqli_fetch_assoc($resultUsu);
+ $nombres = $rowUsu['usu_nombres'];
+ $apellidos =$rowUsu['usu_apellidos'];
+ $imagen = "../".$rowUsu['usu_avatar']; 
+
+ if(!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE || $rol != 'admin'){
     header("Location: ../../../public/vista/login.html");
  }
+
+
 ?>
 
 <!DOCTYPE html> 
@@ -14,28 +28,24 @@
 <body> 
     <nav>
         <li><a href="index_admin.php">Inicio</a></li>
-        <li><a href="../usuario/index.php">Usuarios</a></li>
+        <li><a href="index.php">Usuarios</a></li>
+        <li><a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a></li>
     </nav>
 
     <section>
 
         <?php
-        include '../../../config/conexionBD.php';  
-        $codigo = $_SESSION['codigo'];
-        $sqlUsu = "SELECT * FROM usuario WHERE usu_codigo=$codigo";
-        $resultUsu = $conn->query($sqlUsu);
-        $rowUsu = mysqli_fetch_assoc($resultUsu);
-        $nombres = $rowUsu['usu_nombres'];
-        $apellidos =$rowUsu['usu_apellidos'];
         echo "$nombres ";
         echo $apellidos;
         ?>
 
     </section>
 
+    <section><img id="avatar" src="<?php echo $imagen?>" alt="usu_avatar"/></section>
+
     <section>
 
-        <header>Mensajes Recibidos</header>
+        <header>Mensajes electrónicos</header>
      
         <table style="width:100%"> 
             <tr> 
@@ -48,7 +58,7 @@
     
             <?php             
                 include '../../../config/conexionBD.php';  
-                $sql = "SELECT * FROM correos WHERE corr_eliminado = 'N'"; 
+                $sql = "SELECT * FROM correos WHERE corr_eliminado = 'N' ORDER BY corr_fecha_creacion DESC"; 
                 $result = $conn->query($sql); 
                 $sql = 'SELECT = FROM news WHERE status <> 0'; 
 
@@ -60,7 +70,7 @@
                         echo "<td>" . $row['corr_remitente'] ."</td>"; 
                         echo "<td>" . $row['corr_destinatario'] ."</td>";       
                         echo "<td>" . $row['corr_asunto'] . "</td>";                                                        
-                        echo "<td><a href=../../controladores/admin/eliminar_correo.php?codigo=".$row['corr_codigo'].">Eliminar</a></td>";
+                        echo "<td><a href=../../controladores/admin/eliminar_correo.php?codigoCorr=".$row['corr_codigo'].">Eliminar</a></td>";
                         echo "</tr>"; 
                     }             
                 } else {                 
@@ -77,7 +87,9 @@
     </section>
     
     <footer>
-        <a href="../../../config/cerrar_sesion.php">[Cerrar Sesion]</a>
+        Jose Esteban Calle Chuchuca &#8226; Universidad Politécnica Salesiana &#8226; 
+        <a href="mailto:jcallec7@est.ups.edu.ec">jcallec7@est.ups.edu.ec</a> &#8226; 
+        <a href="tel:+593979376626">(593) 979-376-626</a> &#8226; © Todos los Derechos Reservados 
     </footer>
  
 </body> 

@@ -11,7 +11,7 @@
     echo $mensaje;
         
 
-    $sql="INSERT INTO correos VALUES (0, null ,'$remitente', '$destinatario', '$asunto', '$mensaje', 'E', 'N')";
+    $sql="INSERT INTO correos VALUES (0, null ,'$remitente', '$destinatario', '$asunto', '$mensaje', 'N')";
     $conn->query($sql);
     echo "Correo enviado exitosamente";
     //header("Location: ../../vista/usuario/index_user.php"); 

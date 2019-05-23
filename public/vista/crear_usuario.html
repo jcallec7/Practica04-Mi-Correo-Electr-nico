@@ -2,48 +2,59 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <script type ="text/javascript" src="../controladores/validaciones.js"></script>
     </head>
     <body>
-        <form id="formulario01" method="POST" action="../controladores/crear_usuario.php">
+        <form id="formulario01" method="POST" enctype="multipart/form-data" action="../controladores/crear_usuario.php" onsubmit="return validarCamposObligatorios()">
             <label for="cedula">Cedula(*)</label>
-            <input type="text" id="cedula" name="cedula" value="" placeholder="Ingrese el número de cedula ..."/>
+            <input type="text" id="cedula" name="cedula" value="" placeholder="Ingrese el número de cedula ..." onkeyup="this.value = validarNumeros(this.value)"/>
+            <span id="mensajeCedula" class="error"></span>
             <br>
 
             <label for="nombres">Nombres (*)</label> 
-            <input type="text" id="nombres" name="nombres" value="" placeholder="Ingrese sus dos nombres ..."/> 
+            <input type="text" id="nombres" name="nombres" value="" placeholder="Ingrese sus dos nombres ..." onkeypress="return validarLetras(event)"/> 
+            <span id="mensajeNombres" class="error"></span>
             <br>
 
             <label for="apellidos">Apelidos (*)</label> 
-            <input type="text" id="apellidos" name="apellidos" value="" placeholder="Ingrese sus dos apellidos ..."/> 
+            <input type="text" id="apellidos" name="apellidos" value="" placeholder="Ingrese sus dos apellidos ..." onkeypress="return validarLetras(event)"/> 
+            <span id="mensajeApellidos" class="error"></span>
             <br> 
  
             <label for="direccion">Dirección (*)</label> 
             <input type="text" id="direccion" name="direccion" value="" placeholder="Ingrese su dirección ..."/> 
+            <span id="mensajeDireccion" class="error"></span>
             <br> 
     
             <label for="telefono">Teléfono (*)</label> 
-            <input type="text" id="telefono" name="telefono" value="" placeholder="Ingrese su número telefónico ..."/> 
+            <input type="text" id="telefono" name="telefono" value="" placeholder="Ingrese su número telefónico ..." onkeyup="this.value = validarNumeros(this.value)"/> 
+            <span id="mensajeTelefono" class="error"></span>
             <br>                 
     
             <label for="fecha">Fecha Nacimiento (*)</label> 
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="" placeholder="Ingrese su fecha de nacimiento ..."/> 
+            <input type="text" id="fechaNacimiento" name="fechaNacimiento" value="" placeholder="DDMMYYYY ..." onkeypress="this.value = validarNumeros(this.value)" onkeyup="validarFecha('fechaNacimiento')"/> 
+            <span id="mensajeFecha" class="error"></span>
             <br> 
     
             <label for="correo">Correo electrónico (*)</label> 
-            <input type="email" id="correo" name="correo" value="" placeholder="Ingrese su correo electrónico ..."/> 
+            <input type="text" id="correo" name="correo" value="" placeholder="Ingrese su correo electrónico ..." onkeyup="return validarMail()"/> 
+            <span id="mensajeCorreo" class="error"></span>
             <br> 
     
             <label for="contrasena">Contraseña (*)</label> 
             <input type="password" id="contrasena" name="contrasena" value="" placeholder="Ingrese su contraseña ..."/> 
+            <span id="mensajeContrasena" class="error"></span>
             <br> 
 
             <label for="imagen">Imagen (*)</label> 
-            <input type="text" id="imagen" name="imagen" value="" placeholder="Ingrese ubicacion de la imagen ..."/> 
+            <input type="file" id="imagen" name="imagen" value=""/> 
+            <span id="mensajeImagen" class="error"></span>
             <br> 
 
             <label for="rol">Rol de Usuario (*)</label>
             <input type="radio" id="rol" name="rol" value="admin"/>admin
             <input type="radio" id="rol" name="rol" value="user"/>user
+            <span id="mensajeRol" class="error"></span>
             <br>
     
             <input type="submit" id="crear" name="crear" value="Aceptar" /> 

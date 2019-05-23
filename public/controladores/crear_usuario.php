@@ -13,9 +13,15 @@
  
     <?php         
         //incluir conexión a la base de datos         
-        include '../../config/conexionBD.php';                 
+        include '../../config/conexionBD.php';   
+
         $cedula = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : null; 
-        $avatar = isset($_POST["imagen"]) ? trim($_POST["imagen"]) : null;
+
+        $image = $_FILES["imagen"]["name"];
+        $ruta = $_FILES["imagen"]["tmp_name"];
+        $destino = "../../images/".$image;
+        copy($ruta,$destino);
+
         $rol = $_POST["rol"];
         $nombres = isset($_POST["nombres"]) ? mb_strtoupper(trim($_POST["nombres"]), 'UTF-8') : null; 
         $apellidos = isset($_POST["apellidos"]) ? mb_strtoupper(trim($_POST["apellidos"]), 'UTF-8') : null; 
@@ -25,7 +31,7 @@
         $fechaNacimiento = isset($_POST["fechaNacimiento"]) ? trim($_POST["fechaNacimiento"]): null;         
         $contrasena = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : null; 
                 
-        $sql = "INSERT INTO usuario VALUES (0, '$cedula' ,$avatar, '$rol', '$nombres', '$apellidos', '$direccion', '$telefono', '$correo', MD5('$contrasena'), '$fechaNacimiento', 'N', null, null)";         
+        $sql = "INSERT INTO usuario VALUES (0, '$cedula' ,'$destino' , '$rol', '$nombres', '$apellidos', '$direccion', '$telefono', '$correo', MD5('$contrasena'), '$fechaNacimiento', 'N', null, null)";         
  
         if ($conn->query($sql) === TRUE) {             
             echo "<p>Se ha creado los datos personales correctamente!</p>";      

@@ -67,6 +67,12 @@ disabled/>
  }
  $conn->close();
  ?>
+
+   <footer>
+        Jose Esteban Calle Chuchuca &#8226; Universidad Politécnica Salesiana &#8226; 
+        <a href="mailto:jcallec7@est.ups.edu.ec">jcallec7@est.ups.edu.ec</a> &#8226; 
+        <a href="tel:+593979376626">(593) 979-376-626</a> &#8226; © Todos los Derechos Reservados 
+   </footer>
 </body>
 </html>
 
